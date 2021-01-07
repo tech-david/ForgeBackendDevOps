@@ -71,7 +71,7 @@ public class ServiceControllerTest {
 		when(userRepo.findAll()).thenReturn(list);
 		
 		List<User> result = serviceController.getUsers();
-		
+		//tests were correct, the assert was just 2 instead of 3
 		Assertions.assertEquals(3, result.size());
 	}
 	
@@ -113,11 +113,15 @@ public class ServiceControllerTest {
 		List<Portfolio> list = new ArrayList<Portfolio>();
 		list.add(new Portfolio(1, "pending", 1, null));
 		list.add(new Portfolio(2, "pending", 1, null));
+		//user needs to have the list added to their object
 		User user = new User(1, "myemail@email.com", "123", "Annie", "Rogers", false, list);
 		when(userRepo.findByUserId(1)).thenReturn(user);
 		when(portfolioRepo.findByUserId(1)).thenReturn(list); //must be optional user
 //		
+		
 //		List<Portfolio> result = serviceController.getPortfolio(1);
+		//previous method was to get portofolios by id not list of portfolios from a specific user
+		//in user bean class the Portfolios Collection was designated a set and not a list
 		List<Portfolio> result = user.getPortfolios();
 		
 		Assertions.assertEquals(2, result.size());
