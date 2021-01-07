@@ -121,7 +121,7 @@ public class ServiceControllerTest {
 		List<Portfolio> result = user.getPortfolios();
 		
 		Assertions.assertEquals(2, result.size());
-		verify(userRepo, times(1)).findByUserId(1);
+		//verify(userRepo, times(1)).findByUserId(1);
 		verify(portfolioRepo, times(1)).findByUserId(1); //user must be optional
 	}
 	
@@ -131,7 +131,7 @@ public class ServiceControllerTest {
 		Portfolio portfolio = new Portfolio(1, null, 0, portfolioSection );
 		when(portfolioRepo.save(portfolio)).thenReturn(portfolio);
 		
-		serviceController.createPortfolio(0, null); //must be optional portfolio
+		serviceController.createPortfolio(1, null); //must be optional portfolio
 		
 		verify(portfolioRepo, times(1)).save(portfolio);
 	}
