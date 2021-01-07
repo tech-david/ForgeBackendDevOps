@@ -118,7 +118,7 @@ public class ServiceControllerTest {
 		when(portfolioRepo.findByUserId(1)).thenReturn(list); //must be optional user
 //		
 //		List<Portfolio> result = serviceController.getPortfolio(1);
-		List<Portfolio> result = serviceController.getPortfolio(1);
+		List<Portfolio> result = serviceController.getPortfolios();
 		
 		Assertions.assertEquals(2, result.size());
 		verify(userRepo, times(1)).findByUserId(1);
