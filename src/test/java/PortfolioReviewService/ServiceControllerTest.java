@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -58,7 +59,7 @@ public class ServiceControllerTest {
 		
 		List<Portfolio> result = serviceController.getPortfoliosByStatus("Pending");
 		
-		Assertions.assertEquals(2, result.size());
+		Assertions.assertEquals(3, result.size());
 	}
 	
 	@Test
@@ -106,16 +107,18 @@ public class ServiceControllerTest {
 		verify(userRepo, times(1)).findByUserId(1);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void getPortfolioTest() {
-		User user = new User(1, "myemail@email.com", "123", "Annie", "Rogers", false, null);
+		
 		List<Portfolio> list = new ArrayList<Portfolio>();
 		list.add(new Portfolio(1, "pending", 1, null));
 		list.add(new Portfolio(2, "pending", 1, null));
-		
+		User user = new User(1, "myemail@email.com", "123", "Annie", "Rogers", false, (Set<Portfolio>) list);
 		when(userRepo.findByUserId(1)).thenReturn(user);
 		when(portfolioRepo.findByUserId(1)).thenReturn(list); //must be optional user
-		
+//		
+//		List<Portfolio> result = serviceController.getPortfolio(1);
 		List<Portfolio> result = serviceController.getPortfolio(1);
 		
 		Assertions.assertEquals(2, result.size());
