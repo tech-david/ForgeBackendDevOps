@@ -1,5 +1,6 @@
 package com.forge.PortfolioReviewService.models;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -52,7 +53,7 @@ public class User {
 	
 	@JsonManagedReference(value="user_id")
 	@OneToMany(mappedBy = "userId")
-	private Set<Portfolio> portfolios;
+	private List<Portfolio> portfolios;
 
 	@Override
 	public String toString() {

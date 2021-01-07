@@ -107,14 +107,13 @@ public class ServiceControllerTest {
 		verify(userRepo, times(1)).findByUserId(1);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Test
 	public void getPortfolioTest() {
 		
 		List<Portfolio> list = new ArrayList<Portfolio>();
 		list.add(new Portfolio(1, "pending", 1, null));
 		list.add(new Portfolio(2, "pending", 1, null));
-		User user = new User(1, "myemail@email.com", "123", "Annie", "Rogers", false, (Set<Portfolio>) list);
+		User user = new User(1, "myemail@email.com", "123", "Annie", "Rogers", false, list);
 		when(userRepo.findByUserId(1)).thenReturn(user);
 		when(portfolioRepo.findByUserId(1)).thenReturn(list); //must be optional user
 //		
