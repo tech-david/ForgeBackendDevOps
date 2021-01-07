@@ -1,24 +1,22 @@
 package PortfolioReviewService;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.forge.PortfolioReviewService.PortfolioReviewServiceApplication;
 import com.forge.PortfolioReviewService.controller.EmailController;
 import com.forge.PortfolioReviewService.models.Email;
 import com.forge.PortfolioReviewService.repository.EmailServiceImpl;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@DataJpaTest
+@SpringBootTest(classes = PortfolioReviewServiceApplication.class)
 class EmailControllerTest {
 
 	@Autowired
